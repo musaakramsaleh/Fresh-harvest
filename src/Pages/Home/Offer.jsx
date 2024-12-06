@@ -3,7 +3,7 @@ import CommonText from "../../components/shared/CommonText";
 
 const Offer = () => {
   const calculateTimeLeft = () => {
-    const targetDate = new Date().setHours(24, 0, 0, 0);
+    const targetDate = new Date().setHours(96, 0, 0, 0);
     const now = new Date();
     const difference = targetDate - now;
 
@@ -41,7 +41,7 @@ const Offer = () => {
         <h2 className="font-medium text-[#212337] text-2xl sm:text-4xl md:text-[80px]">
           Seasonal Fruit Bundle
         </h2>
-        <h2 className="font-medium text-3xl sm:text-4xl md:text-[48px]">
+        <h2 className="font-medium text-3xl mt-10 sm:text-4xl md:text-[48px]">
           Discount up to <span className="text-[#FF6A1A]">80% OFF</span>
         </h2>
         <div className="flex flex-wrap gap-5 mt-5 justify-center md:justify-start">

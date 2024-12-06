@@ -58,6 +58,34 @@ const ProductDetails = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
 
+  const handleFavorite = () => {
+    let favorites = JSON.parse(localStorage.getItem("favourites")) || [];
+    // Check if product is already in favorites
+    if (!favorites.some((fav) => fav.id === id)) {
+      favorites.push(product.data);
+      localStorage.setItem("favourites", JSON.stringify(favorites));
+      alert("Product saved to favorites!");
+    } else {
+      alert("This product is already in your favorites.");
+    }
+  };
+
+  const handleAddToCart = () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingProductIndex = cart.findIndex((item) => item.id === id);
+
+    if (existingProductIndex >= 0) {
+      // Update quantity if product already in cart
+      cart[existingProductIndex].quantity += quantity;
+    } else {
+      // Add new product to cart with quantity
+      cart.push({ ...product.data, quantity });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Product added to cart!");
+  };
+
   return (
     <div className="max-w-[1400px] mt-20 mx-auto px-4">
       {/* Main Product Details Section */}
@@ -120,16 +148,23 @@ const ProductDetails = () => {
             </button>
           </div>
           <div className="flex mt-5 gap-5 flex-col sm:flex-row">
-            <button className="flex text-[#4A4A52] rounded-md gap-2 justify-center items-center bg-gray-300 font-bold h-[64px] w-full sm:w-[280px]">
+            <button
+              onClick={handleFavorite}
+              className="flex text-[#4A4A52] rounded-md gap-2 justify-center items-center bg-gray-300 font-bold h-[64px] w-full sm:w-[280px]"
+            >
               <FaHeart /> Save as Favorite
             </button>
-            <button className="flex gap-2 justify-center rounded-md items-center text-white bg-[#FF6A1A] font-bold h-[64px] w-full sm:w-[280px]">
+            <button
+              onClick={handleAddToCart}
+              className="flex gap-2 justify-center rounded-md items-center text-white bg-[#FF6A1A] font-bold h-[64px] w-full sm:w-[280px]"
+            >
               <FaShoppingCart /> Add to Cart
             </button>
           </div>
         </div>
       </div>
 
+      {/* Description and Reviews */}
       <div className="flex gap-3 items-center justify-start mt-5">
         <button className="w-[140px] h-[45px] bg-[#749B3F] text-white rounded-md">
           Description
@@ -143,6 +178,7 @@ const ProductDetails = () => {
         {description}
       </div>
 
+      {/* Related Products */}
       <div className="text-center mt-20 mb-20">
         <CommonText small="Our Products" header="Related Products" />
         <p className="text-[#4A4A52] text-[14px]">

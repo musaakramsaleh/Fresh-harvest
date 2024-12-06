@@ -37,7 +37,7 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/product"
+              to="/shop"
               className={({ isActive }) =>
                 `hover:text-orange-500 ${
                   isActive ? "text-orange-500" : "text-gray-700"
@@ -125,6 +125,7 @@ const Navbar = () => {
             <NavLink
               to="/favorites"
               className="flex items-center gap-2 text-gray-700 hover:text-orange-500"
+              onClick={(e) => e.preventDefault()} // Optional: Prevent any other action
             >
               <FaHeart />
               <span>Favourites</span>
@@ -156,70 +157,83 @@ const Navbar = () => {
           <div className="flex flex-col items-center gap-4 py-4">
             <NavLink
               to="/"
+              onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
                 `hover:text-orange-500 ${
                   isActive ? "text-orange-500" : "text-gray-700"
                 }`
               }
-              onClick={() => setMenuOpen(false)}
             >
               Home
             </NavLink>
             <NavLink
               to="/shop"
+              onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
                 `hover:text-orange-500 ${
                   isActive ? "text-orange-500" : "text-gray-700"
                 }`
               }
-              onClick={() => setMenuOpen(false)}
             >
               Shop
             </NavLink>
             <NavLink
               to="/about-us"
+              onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
                 `hover:text-orange-500 ${
                   isActive ? "text-orange-500" : "text-gray-700"
                 }`
               }
-              onClick={() => setMenuOpen(false)}
             >
               About Us
             </NavLink>
             <NavLink
               to="/blog"
+              onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
                 `hover:text-orange-500 ${
                   isActive ? "text-orange-500" : "text-gray-700"
                 }`
               }
-              onClick={() => setMenuOpen(false)}
             >
               Blog
             </NavLink>
-            <NavLink
-              to="/favorites"
-              className="flex items-center gap-2 text-gray-700 hover:text-orange-500"
-              onClick={() => setMenuOpen(false)}
-            >
-              <FaHeart />
-              <span>Favourites</span>
-            </NavLink>
-            <NavLink
-              to="/cart"
-              className="flex items-center gap-2 text-gray-700 hover:text-orange-500"
-              onClick={() => setMenuOpen(false)}
-            >
-              <FaShoppingCart />
-              <span>Cart</span>
-            </NavLink>
-            {!user && (
+
+            {user ? (
+              <>
+                <NavLink
+                  to="/profile"
+                  onClick={() => setMenuOpen(false)}
+                  className="text-gray-700 hover:text-orange-500 hover:underline"
+                >
+                  Profile
+                </NavLink>
+                {user?.email === "admin@gmail.com" && (
+                  <NavLink
+                    to="/dashboard"
+                    onClick={() => setMenuOpen(false)}
+                    className="text-gray-700 hover:text-orange-500 hover:underline"
+                  >
+                    Dashboard
+                  </NavLink>
+                )}
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    logout();
+                  }}
+                  className="text-gray-700 hover:text-orange-500 hover:underline"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
               <>
                 <NavLink
                   to="/register"
-                  className="text-gray-700 hover:text-orange-500 hover:underline"
                   onClick={() => setMenuOpen(false)}
+                  className="text-gray-700 hover:text-orange-500 hover:underline"
                 >
                   Register
                 </NavLink>
@@ -233,17 +247,6 @@ const Navbar = () => {
                   Sign In
                 </button>
               </>
-            )}
-            {user && (
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  logout();
-                }}
-                className="text-gray-700 hover:text-orange-500 hover:underline"
-              >
-                Logout
-              </button>
             )}
           </div>
         </div>
