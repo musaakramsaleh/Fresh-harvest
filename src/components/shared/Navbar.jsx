@@ -37,7 +37,7 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/shop"
+              to="/product"
               className={({ isActive }) =>
                 `hover:text-orange-500 ${
                   isActive ? "text-orange-500" : "text-gray-700"
@@ -125,7 +125,7 @@ const Navbar = () => {
             <NavLink
               to="/favorites"
               className="flex items-center gap-2 text-gray-700 hover:text-orange-500"
-              onClick={(e) => e.preventDefault()} // Optional: Prevent any other action
+              onClick={(e) => e.preventDefault()}
             >
               <FaHeart />
               <span>Favourites</span>
@@ -167,7 +167,7 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/shop"
+              to="/product"
               onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
                 `hover:text-orange-500 ${
