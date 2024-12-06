@@ -13,6 +13,7 @@ const useAuth = () => {
 const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null);
   const [user, setUser] = useState(null); // Store the user data
+  const [loading, setLoading] = useState(true); // Loading state to indicate if the profile is being fetched
 
   // Check if there's a token in localStorage on initial load
   useEffect(() => {
@@ -20,14 +21,17 @@ const AuthProvider = ({ children }) => {
     if (token) {
       setAuthToken(token); // Set the token in the state if it's found
       fetchUserProfile(token); // Fetch user profile when the token is found
+    } else {
+      setLoading(false); // If there's no token, stop loading
     }
   }, []);
 
   // Function to fetch user profile from the server
   const fetchUserProfile = async (token) => {
     try {
+      setLoading(true); // Start loading when making the API request
       const response = await axios.get(
-        "https://test-2-tan-chi.vercel.app/api/v1/auth/profile",
+        "https://api-fresh-harvest.code-commando.com/api/v1/auth/profile",
         {
           headers: {
             Authorization: token,
@@ -41,6 +45,8 @@ const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error fetching user profile:", error);
+    } finally {
+      setLoading(false); // Stop loading once the request completes
     }
   };
 
@@ -57,9 +63,9 @@ const AuthProvider = ({ children }) => {
     setAuthToken(null);
     setUser(null); // Clear user data on logout
   };
-  console.log(user);
+
   return (
-    <AuthContext.Provider value={{ authToken, user, login, logout }}>
+    <AuthContext.Provider value={{ authToken, user, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

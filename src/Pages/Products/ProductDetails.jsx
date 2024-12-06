@@ -3,7 +3,7 @@ import { useLoaderData, Link } from "react-router-dom";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
-import CommonText from "../components/CommonText";
+import CommonText from "../../components/shared/CommonText";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -22,7 +22,7 @@ const ProductDetails = () => {
       try {
         // Fetch categories
         const categoryResponse = await fetch(
-          "https://test-2-tan-chi.vercel.app/api/v1/category"
+          "https://api-fresh-harvest.code-commando.com/api/v1/category"
         );
         const categoryData = await categoryResponse.json();
 
@@ -36,7 +36,7 @@ const ProductDetails = () => {
 
         // Fetch related products
         const productResponse = await fetch(
-          "https://test-2-tan-chi.vercel.app/api/v1/products"
+          "https://api-fresh-harvest.code-commando.com/api/v1/products"
         );
         const productData = await productResponse.json();
         if (productData.success) {
@@ -59,7 +59,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto">
+    <div className="max-w-[1400px] mt-20 mx-auto">
       {/* Main Product Details Section */}
       <div className="max-w-[1400px] flex gap-12 mx-auto p-4 mt-5">
         {/* Product Image Slider */}

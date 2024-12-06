@@ -3,7 +3,7 @@ import CommonText from "../../components/shared/CommonText";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../components/shared/LoadingSpinner";
 
-const Products = () => {
+const Product = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -69,14 +69,11 @@ const Products = () => {
   }
 
   return (
-    <div className="max-w-[1200px] mx-auto p-4 mt-5">
+    <div className="max-w-[1200px] mx-auto p-4 mt-16">
       {/* Render category filter buttons */}
       <div className="mb-6 text-center">
-        <CommonText
-          small="Our Products"
-          header="Our Fresh Products"
-        ></CommonText>
-        <p className="my-3">
+        <CommonText small="Our Products" header="Buy any Products"></CommonText>
+        <p className="my-3 mt-7">
           We pride ourselves on providing a wide variety of fresh and flavourful
           <br />
           fruits, vegetables, and ingredients.
@@ -107,7 +104,7 @@ const Products = () => {
       {/* Render products */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
-          filteredProducts.slice(0, 8).map((product) => (
+          filteredProducts.map((product) => (
             <Link to={`/products/${product.id}`} key={product.id}>
               <div className="w-[280px] h-[360px] border p-2 rounded-lg shadow-md flex flex-col items-center">
                 <img
@@ -129,15 +126,8 @@ const Products = () => {
           <p>No products available</p>
         )}
       </div>
-      <div className="flex justify-center">
-        <Link to={"/product"}>
-          <button className="border border-[#FF6A1A] text-[#FF6A1A] font-bold bg-transparent px-5 py-3 text-center max-w-[203px] hover:bg-[#FF6A1A] my-10 rounded-lg hover:text-white">
-            See all Products
-          </button>
-        </Link>
-      </div>
     </div>
   );
 };
 
-export default Products;
+export default Product;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import CommonText from "../CommonText";
-import img from "../../assets/Logo.png";
-import img2 from "../../assets/Group 2.png";
+import CommonText from "../../../components/shared/CommonText";
+import img from "../../../assets/Logo.png";
+import img2 from "../../../assets/Group 2.png";
 
 const Aboutus = () => {
   const [product, setProduct] = useState(null);
@@ -12,7 +12,7 @@ const Aboutus = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          "https://test-2-tan-chi.vercel.app/api/v1/products/6751818c1cdb919fe028cf14"
+          "https://api-fresh-harvest.code-commando.com/api/v1/products/6751818c1cdb919fe028cf14"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch product data");

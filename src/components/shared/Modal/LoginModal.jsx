@@ -48,7 +48,7 @@ const LoginModal = ({ closeModal }) => {
 
     try {
       const response = await axios.post(
-        "https://test-2-tan-chi.vercel.app/api/v1/auth/login",
+        "https://api-fresh-harvest.code-commando.com/api/v1/auth/login",
         formData
       );
 

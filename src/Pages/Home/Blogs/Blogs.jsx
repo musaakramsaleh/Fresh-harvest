@@ -1,5 +1,5 @@
 import { FaArrowRight } from "react-icons/fa6";
-import CommonText from "../../../components/CommonText";
+import CommonText from "../../../components/shared/CommonText";
 
 const Blogs = () => {
   const blogs = [

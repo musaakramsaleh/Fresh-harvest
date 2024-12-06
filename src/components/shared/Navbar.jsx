@@ -45,7 +45,7 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/shop"
+              to="/product"
               className={({ isActive }) =>
                 `hover:text-orange-500 ${
                   isActive ? "text-orange-500" : "text-gray-700"

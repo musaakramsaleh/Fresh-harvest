@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CommonText from "../../components/CommonText";
+import CommonText from "../../components/shared/CommonText";
 
 const Offer = () => {
   const calculateTimeLeft = () => {
