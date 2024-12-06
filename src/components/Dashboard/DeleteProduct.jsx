@@ -3,7 +3,6 @@ import axios from "axios";
 import CommonText from "../shared/CommonText";
 import { useAuth } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2"; // Import SweetAlert2
-import LoadingSpinner from "../shared/LoadingSpinner";
 
 const DeleteProduct = () => {
   const [products, setProducts] = useState([]);
@@ -52,7 +51,7 @@ const DeleteProduct = () => {
           `https://api-fresh-harvest.code-commando.com/api/v1/products/${productId}`,
           {
             headers: {
-              Authorization: `Bearer ${authToken}`, // Add Authorization header with the token
+              Authorization: authToken, // Add Authorization header with the token
             },
           }
         );
@@ -79,11 +78,7 @@ const DeleteProduct = () => {
   };
 
   if (loading) {
-    return (
-      <div>
-        <LoadingSpinner></LoadingSpinner>
-      </div>
-    );
+    return <div>Loading products...</div>;
   }
 
   if (error) {
@@ -93,7 +88,7 @@ const DeleteProduct = () => {
   return (
     <div className="max-w-5xl mx-auto p-4">
       <div className="mb-10 text-center">
-        <CommonText small="Admin" header="delete Products"></CommonText>
+        <CommonText small="Admin" header="All products"></CommonText>
       </div>
       <table className="min-w-full border-collapse border border-gray-300">
         <thead>
