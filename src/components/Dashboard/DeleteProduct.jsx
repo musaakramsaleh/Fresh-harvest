@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CommonText from "../shared/CommonText";
+import { useAuth } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2"; // Import SweetAlert2
 import LoadingSpinner from "../shared/LoadingSpinner";
 
-const AllProducts = () => {
+const DeleteProduct = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { authToken } = useAuth(); // Get the authentication token
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -30,6 +33,51 @@ const AllProducts = () => {
     fetchProducts();
   }, []);
 
+  // Handle product delete with confirmation from SweetAlert2
+  const handleDelete = async (productId) => {
+    // SweetAlert2 confirmation prompt
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This action cannot be undone!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await axios.delete(
+          `https://api-fresh-harvest.code-commando.com/api/v1/products/${productId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${authToken}`, // Add Authorization header with the token
+            },
+          }
+        );
+        if (response.data.success) {
+          // Optimistic UI update - remove the product from the state immediately
+          setProducts(products.filter((product) => product.id !== productId));
+          Swal.fire("Deleted!", "The product has been deleted.", "success");
+        } else {
+          Swal.fire(
+            "Error!",
+            "Failed to delete product. Please try again.",
+            "error"
+          );
+        }
+      } catch (err) {
+        console.error("Error deleting product", err);
+        Swal.fire(
+          "Error!",
+          "Failed to delete product. Please try again.",
+          "error"
+        );
+      }
+    }
+  };
+
   if (loading) {
     return (
       <div>
@@ -45,7 +93,7 @@ const AllProducts = () => {
   return (
     <div className="max-w-5xl mx-auto p-4">
       <div className="mb-10 text-center">
-        <CommonText small="Admin" header="All products"></CommonText>
+        <CommonText small="Admin" header="delete Products"></CommonText>
       </div>
       <table className="min-w-full border-collapse border border-gray-300">
         <thead>
@@ -55,6 +103,7 @@ const AllProducts = () => {
             <th className="border border-gray-300 px-4 py-2">Price</th>
             <th className="border border-gray-300 px-4 py-2">Stock</th>
             <th className="border border-gray-300 px-4 py-2">Category ID</th>
+            <th className="border border-gray-300 px-4 py-2">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -73,6 +122,14 @@ const AllProducts = () => {
               <td className="border border-gray-300 px-4 py-2">
                 {product.categoryId}
               </td>
+              <td className="border border-gray-300 px-4 py-2">
+                <button
+                  onClick={() => handleDelete(product.id)}
+                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -81,4 +138,4 @@ const AllProducts = () => {
   );
 };
 
-export default AllProducts;
+export default DeleteProduct;

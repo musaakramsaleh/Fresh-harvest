@@ -73,7 +73,7 @@ const Dashboard = () => {
               {isOpen && <span>All Products</span>}
             </NavLink>
             <NavLink
-              to="/dashboard/dcd"
+              to="/dashboard/deleteproduct"
               className={({ isActive }) =>
                 `flex items-center gap-4 py-2 px-4 rounded-lg ${
                   isActive ? "bg-[#FF6A1A] text-white" : "hover:bg-gray-200"
@@ -81,7 +81,7 @@ const Dashboard = () => {
               }
             >
               <FaFileAlt />
-              {isOpen && <span>Reports</span>}
+              {isOpen && <span>Delete Product</span>}
             </NavLink>
           </nav>
         </div>

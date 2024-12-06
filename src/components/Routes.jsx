@@ -9,6 +9,7 @@ import AdminRoute from "../components/shared/AdminRoute";
 import CreateProduct from "./Dashboard/Createproduct";
 import AllProducts from "./Dashboard/AllProducts";
 import Modal from "./shared/Modal/Modal";
+import DeleteProduct from "./Dashboard/DeleteProduct";
 const router = createBrowserRouter([
   {
     element: <Root></Root>,
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "productlist",
         element: <AllProducts></AllProducts>,
+      },
+      {
+        path: "deleteproduct",
+        element: <DeleteProduct></DeleteProduct>,
       },
     ],
   },
