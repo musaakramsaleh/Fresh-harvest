@@ -17,7 +17,7 @@ const PrivateRoute = ({ children }) => {
   }
 
   // If the user is not logged in, redirect to the login page
-  if (!user) {
+  if (user?.email !== "admin@gmail.com") {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 

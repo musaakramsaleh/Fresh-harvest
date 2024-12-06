@@ -4,7 +4,8 @@ import Root from "./Root/Root";
 import ProductDetails from "../Pages/Products/ProductDetails";
 import ProfilePage from "./ProfilePage";
 import Product from "../Pages/Products/Product";
-
+import Dashboard from "./Dashboard/Dashboard";
+import AdminRoute from "../components/shared/AdminRoute";
 const router = createBrowserRouter([
   {
     element: <Root></Root>,
@@ -30,6 +31,19 @@ const router = createBrowserRouter([
           fetch(
             `https://test-2-tan-chi.vercel.app/api/v1/products/${params.id}`
           ),
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <AdminRoute>
+        <Dashboard></Dashboard>
+      </AdminRoute>
+    ),
+    children: [
+      {
+        path: "",
       },
     ],
   },
