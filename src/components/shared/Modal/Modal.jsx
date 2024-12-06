@@ -50,7 +50,7 @@ const Modal = ({ closeModal }) => {
 
     try {
       const response = await axios.post(
-        "https://api-fresh-harvest.code-commando.com/api/v1/register",
+        "https://test-2-tan-chi.vercel.app/api/v1/users/register",
         formData
       );
 

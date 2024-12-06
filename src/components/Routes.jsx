@@ -6,6 +6,9 @@ import ProfilePage from "./ProfilePage";
 import Product from "../Pages/Products/Product";
 import Dashboard from "./Dashboard/Dashboard";
 import AdminRoute from "../components/shared/AdminRoute";
+import CreateProduct from "./Dashboard/Createproduct";
+import AllProducts from "./Dashboard/AllProducts";
+import Modal from "./shared/Modal/Modal";
 const router = createBrowserRouter([
   {
     element: <Root></Root>,
@@ -23,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/product",
         element: <Product></Product>,
+      },
+      {
+        path: "/register",
+        element: <Modal></Modal>,
       },
       {
         path: "products/:id",
@@ -44,6 +51,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
+        element: <CreateProduct></CreateProduct>,
+      },
+      {
+        path: "productlist",
+        element: <AllProducts></AllProducts>,
       },
     ],
   },

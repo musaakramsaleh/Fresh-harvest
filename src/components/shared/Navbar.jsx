@@ -7,18 +7,12 @@ import { useAuth } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false); // Modal state
-  const [profileMenuOpen, setProfileMenuOpen] = useState(false); // Profile menu state
-  const { authToken, user, login, logout } = useAuth(); // Access auth context
+  const [modalOpen, setModalOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const { user, login, logout } = useAuth();
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
-
-  const handleLogin = (token) => {
-    login(token);
-    setModalOpen(false); // Close modal on login
-  };
-
   const toggleProfileMenu = () => setProfileMenuOpen(!profileMenuOpen);
 
   return (
@@ -26,11 +20,9 @@ const Navbar = () => {
       <nav className="fixed top-0 left-0 w-full bg-white text-gray-800 z-50 shadow-lg">
         <div className="max-w-screen-xl mx-auto px-4 py-3 flex justify-between items-center">
           {/* Logo */}
-          <div className="">
-            <NavLink to="/" className="text-gray-900">
-              <img className="w-[188px]" src="/job-task.png" alt="" />
-            </NavLink>
-          </div>
+          <NavLink to="/" className="text-gray-900">
+            <img className="w-[188px]" src="/job-task.png" alt="Logo" />
+          </NavLink>
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex gap-6">
@@ -79,52 +71,56 @@ const Navbar = () => {
           {/* Icons and Authentication */}
           <div className="hidden md:flex gap-4 items-center">
             {user ? (
-              // If user is logged in, show profile image and dropdown menu
-              <>
-                <div
-                  className="relative"
-                  onClick={toggleProfileMenu}
-                  style={{ cursor: "pointer" }}
-                >
-                  <img
-                    src={user.profileImage || "/default-profile.png"} // Add fallback image if profileImage is not available
-                    alt="Profile"
-                    className="w-10 h-10 rounded-full"
-                  />
-                  {profileMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md border border-gray-200 z-10">
+              <div
+                className="relative"
+                onClick={toggleProfileMenu}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={user.profileImage || "/default-profile.png"}
+                  alt="Profile"
+                  className="w-10 h-10 rounded-full"
+                />
+                {profileMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md border border-gray-200 z-10">
+                    <NavLink
+                      to="/profile"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Profile
+                    </NavLink>
+                    {user?.email === "admin@gmail.com" && (
                       <NavLink
-                        to="/profile"
+                        to="/dashboard"
                         className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                       >
-                        Profile
+                        Dashboard
                       </NavLink>
-                      {user?.email && (
-                        <NavLink
-                          to="/dashboard"
-                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                        >
-                          dashboard
-                        </NavLink>
-                      )}
-                      <button
-                        onClick={logout}
-                        className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </>
+                    )}
+                    <button
+                      onClick={logout}
+                      className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
-              // If user is not logged in, show the login button
-              <button
-                onClick={openModal}
-                className="text-gray-700 hover:text-orange-500 hover:underline"
-              >
-                Sign In
-              </button>
+              <>
+                <NavLink
+                  to="/register"
+                  className="text-gray-700 hover:text-orange-500 hover:underline"
+                >
+                  Register
+                </NavLink>
+                <button
+                  onClick={openModal}
+                  className="text-gray-700 hover:text-orange-500 hover:underline"
+                >
+                  Sign In
+                </button>
+              </>
             )}
             <NavLink
               to="/favorites"
@@ -219,15 +215,24 @@ const Navbar = () => {
               <span>Cart</span>
             </NavLink>
             {!user && (
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  openModal();
-                }}
-                className="text-gray-700 hover:text-orange-500 hover:underline"
-              >
-                Sign In
-              </button>
+              <>
+                <NavLink
+                  to="/register"
+                  className="text-gray-700 hover:text-orange-500 hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Register
+                </NavLink>
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    openModal();
+                  }}
+                  className="text-gray-700 hover:text-orange-500 hover:underline"
+                >
+                  Sign In
+                </button>
+              </>
             )}
             {user && (
               <button
@@ -245,9 +250,7 @@ const Navbar = () => {
       </nav>
 
       {/* Modal */}
-      {modalOpen && (
-        <LoginModal closeModal={closeModal} handleLogin={handleLogin} />
-      )}
+      {modalOpen && <LoginModal closeModal={closeModal} handleLogin={login} />}
     </>
   );
 };

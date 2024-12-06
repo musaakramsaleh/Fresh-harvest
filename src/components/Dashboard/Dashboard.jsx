@@ -9,6 +9,7 @@ import {
   FaSignOutAlt,
   FaBars,
   FaTimes,
+  FaProductHunt,
 } from "react-icons/fa"; // Import icons
 
 const Dashboard = () => {
@@ -50,18 +51,18 @@ const Dashboard = () => {
           {/* Navigation Links */}
           <nav className="flex flex-col space-y-4">
             <NavLink
-              to="/dashboard/profile"
+              to="/dashboard"
               className={({ isActive }) =>
                 `flex items-center gap-4 py-2 px-4 rounded-lg ${
                   isActive ? "bg-[#FF6A1A] text-white" : "hover:bg-gray-200"
                 }`
               }
             >
-              <FaUser />
-              {isOpen && <span>Profile</span>}
+              <FaProductHunt />
+              {isOpen && <span>Create Product</span>}
             </NavLink>
             <NavLink
-              to="/dashboard/settings"
+              to="/dashboard/productlist"
               className={({ isActive }) =>
                 `flex items-center gap-4 py-2 px-4 rounded-lg ${
                   isActive ? "bg-[#FF6A1A] text-white" : "hover:bg-gray-200"
@@ -69,10 +70,10 @@ const Dashboard = () => {
               }
             >
               <FaCog />
-              {isOpen && <span>Settings</span>}
+              {isOpen && <span>All Products</span>}
             </NavLink>
             <NavLink
-              to="/dashboard/reports"
+              to="/dashboard/dcd"
               className={({ isActive }) =>
                 `flex items-center gap-4 py-2 px-4 rounded-lg ${
                   isActive ? "bg-[#FF6A1A] text-white" : "hover:bg-gray-200"
