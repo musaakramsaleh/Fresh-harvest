@@ -38,19 +38,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/favorites",
-        element: (
-          <PrivateRoute>
-            <Favorites></Favorites>
-          </PrivateRoute>
-        ),
+        element: <Favorites></Favorites>,
       },
       {
         path: "/cart",
-        element: (
-          <PrivateRoute>
-            <Cart></Cart>
-          </PrivateRoute>
-        ),
+        element: <Cart></Cart>,
       },
       {
         path: "products/:id",
