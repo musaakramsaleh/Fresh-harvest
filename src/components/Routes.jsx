@@ -10,11 +10,12 @@ import CreateProduct from "./Dashboard/Createproduct";
 import AllProducts from "./Dashboard/AllProducts";
 import Modal from "./shared/Modal/Modal";
 import DeleteProduct from "./Dashboard/DeleteProduct";
+import ErrorPage from "./shared/ErrorPage";
 const router = createBrowserRouter([
   {
     element: <Root></Root>,
     path: "/",
-    // errorElement: <Errorpage></Errorpage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

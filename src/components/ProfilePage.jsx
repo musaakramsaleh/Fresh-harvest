@@ -1,16 +1,13 @@
 import React from "react";
 import { useAuth } from "../Provider/AuthProvider"; // Adjust the import path
 import dayjs from "dayjs"; // Install dayjs for date formatting
+import LoadingSpinner from "./shared/LoadingSpinner";
 
 const ProfilePage = () => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return (
-      <div className="loading-container pt-10 flex justify-center items-center">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   if (!user) {
@@ -22,7 +19,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-md mx-auto mt-20 p-6 bg-white shadow-lg rounded-lg">
       <h1 className="text-2xl font-semibold mb-4 text-center text-gray-800">
         Welcome, {user.name || "User"}
       </h1>
