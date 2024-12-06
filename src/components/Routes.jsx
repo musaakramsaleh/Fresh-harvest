@@ -11,9 +11,8 @@ import AllProducts from "./Dashboard/AllProducts";
 import Modal from "./shared/Modal/Modal";
 import DeleteProduct from "./Dashboard/DeleteProduct";
 import ErrorPage from "./shared/ErrorPage";
-import Favorites from "../Pages/Favorites/favorites";
 import Cart from "../Pages/Cart/Cart";
-import PrivateRoute from "./shared/PrivateRoute";
+
 const router = createBrowserRouter([
   {
     element: <Root></Root>,
@@ -35,10 +34,6 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Modal></Modal>,
-      },
-      {
-        path: "/favorites",
-        element: <Favorites></Favorites>,
       },
       {
         path: "/cart",

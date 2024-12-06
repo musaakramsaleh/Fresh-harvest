@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CommonText from "../../components/shared/CommonText";
+import CommonText from "../components/shared/CommonText";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
-import useFavorites from "../../hooks/useFavorites";
+import useFavorites from "../hooks/useFavorites";
 import Swal from "sweetalert2"; // Import SweetAlert2
 
 const Favorites = () => {
