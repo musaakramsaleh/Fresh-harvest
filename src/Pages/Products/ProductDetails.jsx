@@ -181,18 +181,18 @@ const ProductDetails = () => {
       {/* Related Products */}
       <div className="text-center mt-20 mb-20">
         <CommonText small="Our Products" header="Related Products" />
-        <p className="text-[#4A4A52] text-[14px]">
+        <p className="text-[#4A4A52] mt-5 text-[14px]">
           We pride ourselves on offering a wide variety of fresh and flavorful
           fruits, vegetables, and salad ingredients.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-5 mp-10">
           {relatedProducts.map((product) => (
             <Link to={`/products/${product.id}`} key={product.id}>
-              <div className="w-full max-w-[280px] h-[350px] border p-4 rounded-lg shadow-md flex flex-col items-center">
+              <div className="w-full max-w-[280px] h-[350px] border p-4 rounded-lg justify-center shadow-md flex flex-col items-center">
                 <img
                   src={product.images[0] || "/default-image.png"}
                   alt={product.productName}
-                  className="w-full h-[200px] sm:h-[250px] object-cover rounded-lg mb-4"
+                  className="w-full h-[200px] sm:h-[180px] object-cover rounded-lg"
                 />
                 <h3 className="text-lg font-bold text-center mb-2">
                   {product.productName}
