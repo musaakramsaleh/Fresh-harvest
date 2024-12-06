@@ -47,36 +47,41 @@ const AllProducts = () => {
       <div className="mb-10 text-center">
         <CommonText small="Admin" header="All products"></CommonText>
       </div>
-      <table className="min-w-full border-collapse border border-gray-300">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="border border-gray-300 px-4 py-2">ID</th>
-            <th className="border border-gray-300 px-4 py-2">Product Name</th>
-            <th className="border border-gray-300 px-4 py-2">Price</th>
-            <th className="border border-gray-300 px-4 py-2">Stock</th>
-            <th className="border border-gray-300 px-4 py-2">Category ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product.id} className="text-center">
-              <td className="border border-gray-300 px-4 py-2">{product.id}</td>
-              <td className="border border-gray-300 px-4 py-2">
-                {product.productName}
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                ${product.price.toFixed(2)}
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                {product.stock}
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                {product.categoryId}
-              </td>
+      <div className="overflow-x-auto">
+        {/* Ensure that the table can exceed the width */}
+        <table className="min-w-full border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border border-gray-300 px-4 py-2">ID</th>
+              <th className="border border-gray-300 px-4 py-2">Product Name</th>
+              <th className="border border-gray-300 px-4 py-2">Price</th>
+              <th className="border border-gray-300 px-4 py-2">Stock</th>
+              <th className="border border-gray-300 px-4 py-2">Category ID</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.id} className="text-center">
+                <td className="border border-gray-300 px-4 py-2">
+                  {product.id}
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {product.productName}
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  ${product.price.toFixed(2)}
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {product.stock}
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {product.categoryId}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

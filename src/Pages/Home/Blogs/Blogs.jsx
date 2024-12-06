@@ -32,7 +32,7 @@ const Blogs = () => {
               small="Our Blogs"
               header="Fresh Harvest Blog"
             ></CommonText>
-            <p className="text-[#4A4A52] text-[14px]">
+            <p className="text-[#4A4A52] text-[14px] mt-5">
               Welcome to the Fresh Harvest Blog, your go-to resource for all
               things
               <br />

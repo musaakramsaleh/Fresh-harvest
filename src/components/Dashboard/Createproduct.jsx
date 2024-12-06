@@ -14,6 +14,7 @@ const CreateProduct = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { authToken } = useAuth();
+
   // Fetch categories from API
   useEffect(() => {
     const fetchCategories = async () => {
@@ -101,7 +102,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
+    <div className="max-w-full sm:max-w-2xl mx-auto p-4">
       <div className="text-center mb-5">
         <CommonText small="Product" header="Create New Product"></CommonText>
       </div>
@@ -172,12 +173,12 @@ const CreateProduct = () => {
           {loading && <p>Uploading image...</p>}
         </div>
         {image && (
-          <div>
-            <h3 className="mt-2">Uploaded Image:</h3>
+          <div className="flex items-center mt-4">
+            <h3 className="mr-4">Uploaded Image:</h3>
             <img
               src={image}
               alt="Uploaded"
-              className="w-24 h-24 object-cover mt-2"
+              className="w-24 h-24 object-cover"
             />
           </div>
         )}

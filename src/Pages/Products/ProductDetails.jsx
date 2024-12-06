@@ -59,16 +59,16 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="max-w-[1400px] mt-20 mx-auto">
+    <div className="max-w-[1400px] mt-20 mx-auto px-4">
       {/* Main Product Details Section */}
-      <div className="max-w-[1400px] flex gap-12 mx-auto p-4 mt-5">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-12 mx-auto p-4 mt-5">
         {/* Product Image Slider */}
-        <div className="flex justify-center">
+        <div className="flex justify-center md:w-1/2">
           <Swiper
             loop={true}
             pagination={{ clickable: true }}
             modules={[Pagination]}
-            className="mySwiper w-[500px] h-[500px] rounded-lg shadow-md"
+            className="mySwiper w-full h-[400px] md:h-[500px] rounded-lg shadow-md"
           >
             {images.map((image, index) => (
               <SwiperSlide key={index}>
@@ -83,7 +83,7 @@ const ProductDetails = () => {
         </div>
 
         {/* Product Details */}
-        <div className="mt-5">
+        <div className="mt-5 md:w-1/2">
           <CommonText small={categoryName} header={productName}></CommonText>
           <div className="flex items-center gap-1 mt-2">
             {[...Array(5)].map((_, index) => (
@@ -101,7 +101,7 @@ const ProductDetails = () => {
           </div>
           <p className="text-2xl font-bold text-[#FF6A1A] mt-3">${price}/kg</p>
           <p className="text-lg text-gray-700 mt-3">{description}</p>
-          <div className="flex items-center justify-around mt-4 border border-gray-300 rounded-md w-fit">
+          <div className="flex items-center justify-around mt-4 border border-gray-300 rounded-md w-full md:w-fit">
             <span className="block">Quantity</span>
             <button
               onClick={handleDecrement}
@@ -119,17 +119,18 @@ const ProductDetails = () => {
               +
             </button>
           </div>
-          <div className="flex mt-5 gap-5">
-            <button className="flex text-[#4A4A52] rounded-md gap-2 justify-center items-center bg-gray-300 font-bold h-[64px] w-[280px]">
-              <FaHeart></FaHeart> Save as Favorite
+          <div className="flex mt-5 gap-5 flex-col sm:flex-row">
+            <button className="flex text-[#4A4A52] rounded-md gap-2 justify-center items-center bg-gray-300 font-bold h-[64px] w-full sm:w-[280px]">
+              <FaHeart /> Save as Favorite
             </button>
-            <button className="flex gap-2 justify-center rounded-md items-center text-white bg-[#FF6A1A] font-bold h-[64px] w-[280px]">
-              <FaShoppingCart></FaShoppingCart> Add to cart
+            <button className="flex gap-2 justify-center rounded-md items-center text-white bg-[#FF6A1A] font-bold h-[64px] w-full sm:w-[280px]">
+              <FaShoppingCart /> Add to Cart
             </button>
           </div>
         </div>
       </div>
-      <div className="flex gap-3 items-center mr-12">
+
+      <div className="flex gap-3 items-center justify-center mt-5">
         <button className="w-[140px] h-[45px] bg-[#749B3F] text-white rounded-md">
           Description
         </button>
@@ -137,30 +138,32 @@ const ProductDetails = () => {
           Reviews(1)
         </button>
       </div>
+
       <div className="mt-5 max-w-[894px] bg-[#F4F6F6] rounded-lg py-10 px-10 mb-20">
         {description}
       </div>
-      {/* Related Products Section */}
-      <div className="text-center mt-20">
-        <CommonText small="Our Products" header="Related Products"></CommonText>
+
+      <div className="text-center mt-20 mb-20">
+        <CommonText small="Our Products" header="Related Products" />
         <p className="text-[#4A4A52] text-[14px]">
-          We pride ourselves on offering wide variety of fresh and flavorful
-          fruits,
-          <br /> vegetables and salad ingredients
+          We pride ourselves on offering a wide variety of fresh and flavorful
+          fruits, vegetables, and salad ingredients.
         </p>
-        <div className="flex flex-wrap justify-center gap-6 mt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {relatedProducts.map((product) => (
             <Link to={`/products/${product.id}`} key={product.id}>
-              <div className="w-[280px] h-[360px] border p-2 rounded-lg shadow-md flex flex-col items-center">
+              <div className="w-full max-w-[280px] h-[350px] border p-4 rounded-lg shadow-md flex flex-col items-center">
                 <img
                   src={product.images[0] || "/default-image.png"}
                   alt={product.productName}
-                  className="w-[258px] h-[208px] object-cover rounded-lg"
+                  className="w-full h-[200px] sm:h-[250px] object-cover rounded-lg mb-4"
                 />
-                <h3 className="text-lg font-bold mt-4 text-center">
+                <h3 className="text-lg font-bold text-center mb-2">
                   {product.productName}
                 </h3>
-                <p className="text-center font-bold">${product.price}</p>
+                <p className="text-center font-bold text-[#FF6A1A]">
+                  ${product.price}
+                </p>
                 <button className="w-full border-[#D9D9D9] hover:border-white text-[#212337] border-2 p-2 mt-4 rounded-lg bg-white hover:text-white hover:bg-[#FF6A1A] transition duration-300">
                   Add to Cart
                 </button>

@@ -37,7 +37,7 @@ const Testimonial = () => {
         small="Testimonial"
         header="What our Customers Say"
       ></CommonText>
-      <p className="text-[14px]">
+      <p className="text-[14px] md:text-xl mt-3">
         Do not just take our word for it---here is some of our customers have to{" "}
         <br />
         say about their experience with Fresh Harvest

@@ -105,21 +105,23 @@ const Products = () => {
       </div>
 
       {/* Render products */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
           filteredProducts.slice(0, 8).map((product) => (
             <Link to={`/products/${product.id}`} key={product.id}>
-              <div className="w-[280px] h-[360px] border p-2 rounded-lg shadow-md flex flex-col items-center">
+              <div className="w-full h-[350px] md:h-[360px] border p-3 rounded-lg shadow-md flex flex-col items-center">
                 <img
                   src={product.images[0] || "/default-image.png"}
                   alt={product.productName}
-                  className="w-[258px] h-[208px] object-cover rounded-lg"
+                  className="w-full h-[200px] sm:h-[180px] object-cover rounded-lg"
                 />
-                <h3 className="text-lg font-bold mt-4 text-center">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold mt-4 text-center">
                   {product.productName}
                 </h3>
-                <p className="text-center font-bold">${product.price}</p>
-                <button className="w-full border-[#D9D9D9] hover:border-white text-[#212337] border-2 p-2 mt-4 rounded-lg bg-white hover:text-white hover:bg-[#FF6A1A] transition duration-300">
+                <p className="text-sm sm:text-base font-bold mt-2 text-center">
+                  ${product.price}
+                </p>
+                <button className="w-full text-sm sm:text-base border-[#D9D9D9] hover:border-white text-[#212337] border-2 p-2 mt-4 rounded-lg bg-white hover:text-white hover:bg-[#FF6A1A] transition duration-300">
                   Add to Cart
                 </button>
               </div>

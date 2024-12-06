@@ -3,12 +3,9 @@ const Banner = () => {
     <>
       <div>
         <div
-          className="object-contain py-8"
+          className=" py-8 md:bg-cover bg-left-bottom md:bg-center md:bg-no-repeat"
           style={{
             backgroundImage: "url('/mainbanner.jpg')",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
           }}
         >
           <div className="max-w-[1440px] mx-auto px-6">
@@ -30,7 +27,7 @@ const Banner = () => {
                   Shop Now
                 </button>
 
-                <div className="bg-gray-200 py-4 rounded-md flex justify-between items-center px-4 ml-60 mr-8 mt-8">
+                <div className="bg-gray-200 py-4 rounded-md flex md:justify-between items-center px-4 md:ml-60 mr-8 mt-8">
                   <div className="pl-2 space-y-2">
                     <p className="text-primary">Special Offer</p>
                     <h4 className="text-xl font-Rubik font-semibold">
